@@ -1,0 +1,782 @@
+/* Define las variables para los colores */ 
+:root{
+    --colorA: #ffffff;
+    --colorB: #cccccc;
+    --colorC: #646464;
+    --colorD: #000000;
+    --colorE: #f01818;
+    --colorF: #00800d;
+    --colorG: #CC00FF;
+    --colorH: #005461;
+    --colorI: #00B7B5;
+    --colorJ: #e7e7e7;
+}
+
+/* Estilos generales para elementos de la página */
+* {
+    /* Hace que se incluyan en las dimensiones de los elementos los rellenos y los bordes, pero no los margenes */
+    box-sizing: border-box;
+
+    /* Tipo de letra general */
+    font-family: 'Inter', sans-serif;
+}
+
+html{ 
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body{
+    display:grid;
+    /* Define el número y tamaño de las columnas y filas  */
+    grid-template-columns: 99%;    
+    grid-template-rows: 0px auto auto auto auto auto;
+    /* Define la separación entre filas y columnas */
+    gap: 0;
+
+    /* Define las celdas*/
+    grid-template-areas:    "header"
+                            "nav"
+                            "contenido_1"
+                            "contenido_2"
+                            "contenido_3"
+                            "footer";  
+    
+    justify-content: center;
+    margin: 0 auto;  /* centra el contenedor */
+    max-width: 999px;
+    min-width: 320px;
+    min-height: 100%;
+    background-color: var(--colorA);                                                           
+}
+
+a{
+    text-decoration: none;
+    color: var(--colorD);
+}
+
+p {
+  font-size: 1rem; /* 16px base */
+}
+
+/* Tecnica para ocultar un elemento pero mantener SEO */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Estilo para todos los botones ---------------------- */
+button, .boton {
+    display: inline-flex;
+    align-items: center;       /* Centra verticalmente */
+    justify-content: center;   /* Centra horizontalmente */
+    background-color: var(--colorI);
+    color: var(--colorD);
+    padding: 0.6rem 1.2rem;    /* Tamaño adaptable */
+    border-radius: 0.6rem;     /* Bordes suaves */
+    border: 1px solid var(--colorI);
+    font-size: 1rem;           /* Tamaño adaptativo */
+    font-family: 'Inter', sans-serif; 
+    font-weight: 600;
+    transition: all 0.3s ease; /* Animación suave */
+    box-shadow: 0 2px 6px var(--colorB); /* Sutil sombra */
+    margin: 0.5rem;
+}
+
+button:hover, .boton:hover {
+    opacity: 0.8;
+    /*background-color: var(--colorH);*/
+    /*color: var(--colorL);*/
+    transform: translateY(-2px);     /* Efecto flotante */
+    box-shadow: 0 4px 12px var(--colorC);
+    cursor: pointer;
+}
+
+button:active, .boton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px var(--colorC);
+    background-color: var(--colorA); /* Fondo presionado */
+}
+
+/* Estilos para todos los formularios --------------- */
+/* Contenedor del formulario */
+form {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Labels */
+form label {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--colorD);
+}
+
+/* Inputs y selects */
+form input, form select, form textarea {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--colorI);
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    font-family: inherit; /* Utiliza el del padre */
+    background-color: var(--colorJ);
+    transition: all 0.3s ease;
+    outline: none; /* Evita que el navegador dibuje el contorno predeterminado de un elemento cuando esté enfocado */ 
+    margin: 0.5rem;
+}
+
+/* Focus */
+form input:focus, form select:focus, form textarea:focus {
+    border-color: var(--colorI);
+    box-shadow: 0 0 0 2px var(--colorI);
+}
+
+/* Placeholder */
+form input::placeholder, form textarea::placeholder {
+    color: var(--colorC);
+    opacity: 0.8;
+}
+
+/* Estilo para input tipo file ------------------------ */
+input[type="file"]::file-selector-button {
+    background-color: var(--colorG);
+    color: var(--colorA);
+    padding: 0.6rem 1.2rem;    /* Tamaño adaptable */
+    border-radius: 0.6rem;     /* Bordes suaves */
+    border: 1px solid var(--colorG);
+    font-size: 1rem;           /* Tamaño adaptativo */
+    font-family: 'Inter', sans-serif; 
+    font-weight: 600;
+    transition: all 0.3s ease; /* Animación suave */
+    box-shadow: 0 2px 6px var(--colorB); /* Sutil sombra */
+    margin: 0.5rem;
+}
+
+input[type="file"]::file-selector-button:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);     /* Efecto flotante */
+    box-shadow: 0 4px 12px var(--colorC);
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px var(--colorC);
+    color: var(--colorD);
+    background-color: var(--colorA); /* Fondo presionado */
+}
+
+/* Un estilo para la clase tabla_base ---------------------- */
+.tabla_base {
+    overflow: hidden;
+    background: var(--colorA);
+    border-collapse: collapse; /* elimina espacio entre celdas */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--colorC);
+    margin: 0.5rem;
+    max-width: 550px;
+}
+
+.tabla_base thead {
+    background: linear-gradient(90deg, var(--colorH), var(--colorG));
+    color: var(--colorA);
+}
+
+.tabla_base th, .tabla_base td {
+    padding: 4px 6px;
+    text-align: left;
+}
+
+.tabla_base tbody tr {
+    border-bottom: 1px solid var(--colorG);
+}
+
+.tabla_base tbody tr:hover {
+    background-color: var(--colorJ);
+}
+
+.tabla_base th {
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ----------------------------------------------- */
+
+/* Modales ---------------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(3px);
+}
+
+.modal-contenido {
+    background: var(--colorA);
+    width: 90%;
+    max-width: 800px;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cerrar {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.modal-texto {
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+/* ----------------------------------------------- */
+
+.tarjeta{
+    background-color: var(--colorA); 
+    border: 1px solid var(--colorG);
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px var(--colorC);
+    padding:1rem;
+    margin:0.5rem;
+}
+
+.mensaje_error{
+    color: var(--colorE);
+}
+
+.mensaje_confir{
+    color: var(--colorF);
+}
+
+.mensaje_info{
+    color: var(--colorG);
+}
+
+.boton_riesgo{
+    background-color: var(--colorE); 
+    border: 1px solid var(--colorE);
+}
+
+.boton_inicio {
+    background-color: var(--colorG);
+    border-color: var(--colorG);
+    color: var(--colorA);
+}
+
+.boton_inicio:active {
+    color: var(--colorD);
+}
+
+.letrero{
+    color:var(--colorH);
+    margin: 0.5rem;                                                            
+}
+
+.letrero_importante{
+    font-size: 1.5rem;
+    color: var(--colorG);
+    text-align: center;
+}
+
+.form_filtro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%; 
+    max-width: 550px;  
+}
+
+.ficha_user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;                                                          
+}
+
+.div_tabla_responsiva{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+
+    /* Para scroll */
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.div_tabla_responsiva th{
+    font-size: 0.7rem;
+}
+
+.div_tabla_responsiva button{
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;  
+}
+
+.item1 { order: -1; }  
+
+/* ---------------------------- Estilo base: Smartphone pequeño de 320px en adelante --------------------- */
+
+/* ÁREA DE CABECERA */
+header {
+    display: none;
+}
+
+/*----------------------- */
+
+/* ÁREA DE NAVEGACIÓN */
+nav{
+    grid-area:nav;
+    display: flex;
+    flex-direction: column;                                      
+}
+    
+.accesos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;                                      
+}
+
+.accesos button, .accesos .boton{
+    width: 200px;
+}
+
+#form_login label{
+    display:none;
+}
+
+.div_accesos_izq{
+    min-width: 20%;                        
+
+}
+
+#nav_mensaje_error{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#form_login{ 
+    display: flex;
+    flex-direction: row;
+    align-items: center;                       
+}
+
+/* -------------------------*/
+
+/* ÁREA DE CONTENIDO */
+main{
+    display: contents;
+}
+
+/* ------------------------------- */
+
+/* CONTENIDO 1 */
+#contenido_1{
+    grid-area:contenido_1;
+    display: flex;                                  
+}
+
+#cabecera_imagen{
+    width: 100%;                                     
+}
+
+/* ----------------------------------- */
+
+/* CONTENIDO 2 */
+#contenido_2{
+    grid-area:contenido_2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    min-height: 105px;
+    padding-top: 2rem;                                                                                   
+}
+
+#div_accesos_eventos_org{
+    display: flex;
+    align-items: center;
+}
+
+#div_accesos_eventos_org button, #div_accesos_eventos_org .boton{
+    width: 90px;
+    height: 80px;
+    text-align: center;
+}
+
+/* ------------------------------------------- */
+
+/* CONTENIDO 3 */
+#contenido_3{
+    grid-area:contenido_3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start; 
+    padding-bottom: 2rem;
+    min-height: 50vh;                                                            
+}
+
+#contenido_3 form{
+    max-width: 550px;
+}
+
+/* Para navPublica ------ */
+#div_capsula{
+    width: 100%;
+    max-width: 550px;
+}
+
+.capsula{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;                                 
+}   
+
+.div_superior_capsula{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;                                                                                     
+}   
+
+.nombre_evento_capsula{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.1rem;
+    width: 93%;
+    max-height: 2.8rem;
+    color: var(--colorG);                                             
+}
+
+.imagen_link{
+    width: 6vw;                                
+    max-width: 35px;                            
+}
+
+.div_info_capsula{
+    display: flex;
+    align-items: start;
+    justify-content: space-evenly;
+    width: 100%;                                                                          
+}
+
+.div_imagen_capsula{
+    display: flex;
+    align-items: center;
+    justify-content:start;
+    width: 100%;
+    overflow: hidden;    /* evita scroll si la imagen es más grande */                                        
+}
+
+.imagen_evento{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Hace que la imagen cubra el div */            
+}
+
+.div_calendario_capsula{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 42%;                                                                                       
+}
+
+.div_calendario_capsula .tabla_base {
+    font-size: 0.6rem;
+}
+
+.div_calendario_capsula .tabla_base th{
+    font-size: 0.6rem;
+    padding: 2px 2px;
+}
+
+.div_calendario_capsula .tabla_base td{
+    padding: 2px 2px;
+}
+
+.mes{
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.dias_evento{
+    color:var(--colorA);
+    background-color: var(--colorF);
+}
+
+.informacion_capsula{
+    text-align: left;
+    width: 90%;                                                                                    
+}
+
+.div_gest_evento{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid var(--colorE);
+    background-color: var(--colorJ);
+    text-align: center;
+    width: 97%;
+}
+
+/* Para navEvento --------------------- */
+#div_principal_evento{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;  
+    max-width: 550px;                                          
+}
+
+#div_imagen_evento{
+    display: flex;
+    align-items: center;
+    justify-content:start;
+    width: 100%;
+    overflow: hidden;    /* evita scroll si la imagen es más grande */                      
+}
+
+#div_calendario_evento{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 1rem;                                             
+}
+
+#div_masinfo_evento{
+    width: 90%;                                        
+}
+
+.div_gest_reserva{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;   
+}
+
+.form_reserva{
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    width: 70%; 
+}
+
+.form_reserva button{
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;  
+}
+
+#div_ver_reservas{
+    display: flex;
+    justify-content: center;
+}
+
+/* Para navPrivada ------------------- */
+.secciones_datos_usuario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    max-width: 550px;     
+}
+
+#div_img_perfil{
+    width: 25%;
+    overflow: hidden;    /* evita scroll si la imagen es más grande */
+}    
+
+#img_perfil {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* redondea la imagen */
+    border: 2px solid var(--colorG);
+}
+
+/* Para navGestionUsuarios ------------- */
+#div_tabla_usuarios{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* Para scroll */
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#tabla_usuarios{
+    width: 100%;
+}
+
+/* ------------------------------------------------------ */
+
+/* Pie de página */
+footer {
+    grid-area:footer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: var(--colorH);
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    color: var(--colorA);
+    text-align: center;
+} 
+
+footer a{
+    color: var(--colorA);
+    margin: 0.5rem;
+}
+
+/* -------------------------------------------- */
+
+/* --------------------------------- Smartphone mediannos ------------------------------ */
+@media (min-width: 475px) {
+    .div_tabla_responsiva{
+        font-size: 0.9rem;
+    }
+
+    .div_tabla_responsiva button{
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;  
+    }
+
+    .form_reserva{
+        width: 50%;
+    }
+
+    .form_reserva button{
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;  
+    }
+}    
+
+/* --------------------------------- Smartphone grandes ------------------------------ */
+@media (min-width: 555px) {
+
+    .accesos{
+        flex-direction: row;
+        min-height: 58px;                                             
+    }
+
+    .accesos button, .accesos .boton{
+        width: auto;
+    }
+
+    .item1 { order: 0; }  
+    .item2 { order: 0; }
+
+    #div_accesos_eventos_org button, #div_accesos_eventos_org .boton{
+        width: auto;
+        height: auto;
+    }
+
+    #nav_mensaje_error{
+        justify-content: start;
+        padding-left: 10vw;                   
+    }
+
+    .imagen_link{
+        width: 5vw;                                                             
+    }
+
+    .div_calendario_capsula .tabla_base {
+        font-size: 0.8rem;
+    }
+
+    .div_calendario_capsula .tabla_base th{
+        font-size: 0.8rem;
+        padding: 3px 4px;
+    }
+
+    .div_calendario_capsula .tabla_base td{
+        padding: 3px 4px;
+    }
+
+    #div_calendario_evento{
+        flex-direction: row;
+        align-items: start;                                         
+    }
+
+}
+
+/* --------------------------------------- Tablets pequeñas en adelante -------------------- */
+@media (min-width: 650px) {
+    .div_tabla_responsiva .tabla_base{
+        min-width: 520px
+    }
+
+    #form_login label{
+        display: inline;
+    }
+
+    .form_filtro{
+        flex-direction: row;
+        align-items: center;
+        width: 60%;   
+    }
+
+    footer {
+        flex-direction: row;
+    }
+
+    #item3 { order: 0; }  
+    
+    .imagen_link{
+        width: 4vw;                                                             
+    }
+
+    .form_eliminar{
+        min-width: 550px;    
+    }
+}
+
+/* ---------------------------- Pantalla pequeña a mediana (max-width: 1000px) ----------------------------- */
+@media (min-width: 850px) {
+
+}
+
+/* ------------------------------------- Pantallas grandes ------------------------------------------ */
+@media (min-width: 1000px) {
+    
+}
